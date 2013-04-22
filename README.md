@@ -13,11 +13,6 @@ _s（アンダースコアーズ）
 ---------------
 * 日本語翻訳ファイル付き
 * <code>&lt;head&gt;</code>タグ内に<code>&lt;meta http-equiv="X-UA-Compatible" content="IE=Edge"&gt;</code> を追記。
-* <code>&lt;footer&gt;</code>タグ内にリンク先を追加。
-* スタイルシートをSass、Compassでマークアップ。
-* 2カラム（右サイドバー）のレイアウト。
-* フォントサイズやナビゲーションなどを装飾。
-* エディター用スタイルシート。
 
 始め方
 ---------------
