@@ -4,13 +4,15 @@ Theme URI: http://underscores.me/
 Author: Kazue Igarashi
 Author URI: http://gatespace.jp
 Description:  _s カスタマイズテーマです。
-Version: 0.2
+Version: 0.4
 License: GNU General Public License
 License URI: license.txt
 Tags: two-columns, right-sidebar, custom-menu
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
+
+ _s is based on Underscores http://underscores.me/, (C) 2012-2013 Automattic, Inc.
 
 Resetting and rebuilding styles have been helped along thanks to the fine work of
 Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
@@ -587,7 +589,6 @@ body {
 	        box-shadow: none;
 }
 
-
 .byline {
 	display: none;
 }
@@ -638,7 +639,6 @@ body {
 .entry-content blockquote > *:last-child {
 	margin-bottom: 0;
 }
-
 
 .page-links {
 	clear: both;
@@ -694,14 +694,10 @@ img.size-full {
 }
 .wp-caption {
 	border: 1px solid #ccc;
+	margin-bottom: 1.5em;
 	max-width: 100%;
 }
-.wp-caption.aligncenter,
-.wp-caption.alignleft,
-.wp-caption.alignright {
-	margin-bottom: 1.5em;
-}
-.wp-caption img {
+.wp-caption img[class*="wp-image-"] {
 	display: block;
 	margin: 1.2% auto 0;
 	max-width: 98%;
@@ -718,11 +714,8 @@ img.size-full {
 .site-content .gallery {
 	margin-bottom: 1.5em;
 }
-
-.site-content .gallery dd {
-	margin: 0;
+.gallery-caption {
 }
-
 .site-content .gallery a img {
 	border: none;
 	height: auto;
@@ -735,6 +728,9 @@ img.size-full {
 	font-style: italic;
 }
 
+.site-content .gallery dd {
+	margin: 0;
+}
 .site-content .gallery-columns-4 .gallery-item {
 }
 .site-content .gallery-columns-4 .gallery-item img {
@@ -751,7 +747,7 @@ object {
 /* =Navigation
 ----------------------------------------------- */
 
-.site-content .site-navigation {
+.site-content [class*="navigation"] {
 	font-size: 0.85em;
 	margin: 0 0 1.5em;
 	overflow: hidden;
@@ -759,12 +755,14 @@ object {
 	padding: 10px;
 	-webkit-border-radius: 5px;
 	        border-radius: 5px;
+	margin: 0 0 1.5em;
+	overflow: hidden;
 }
-.site-content .nav-previous {
+[class*="navigation"] .nav-previous {
 	float: left;
 	width: 50%;
 }
-.site-content .nav-next {
+[class*="navigation"] .nav-next {
 	float: right;
 	text-align: right;
 	width: 50%;
@@ -784,28 +782,32 @@ object {
 	margin-bottom: 10px;
 }
 
-.commentlist {
+.comment-list {
 	list-style-type: none;
 	margin-left: 0;
 }
-.commentlist li ul {
+.comment-list li ul {
 	list-style-type: none;
 }
-.commentlist li .comment-content ul {
+.comment-list li .comment-content ul {
 	list-style-type: disc;
 }
 
-.commentlist li {
+.comment-list li {
 	padding: 10px;
 	-webkit-border-radius: 5px;
 	        border-radius: 5px;
 }
-.commentlist li .comment-content li {
+.comment-list li .comment-content li {
 	padding: 0;
 }
 
 .thread-odd {
 	background-color: #EEEEEE;
+}
+
+.comment-content a {
+	word-wrap: break-word;
 }
 
 .bypostauthor {
@@ -838,13 +840,14 @@ object {
 	margin: 0 0 1.5em;
 }
 
-/* Search widget */
-#searchsubmit {
-	display: none;
-}
-
 .widget-area {
 	font-size: 0.85em;
+}
+
+.widget-area .widget .widget-title {
+	padding: 5px;
+	background-color: #CCCCCC;
+	margin-bottom: 10px
 }
 
 .widget-area .widget {
@@ -854,19 +857,22 @@ object {
 	   -moz-box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 	        box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 }
+
+/* Make sure select elements fit in widgets */
+.widget select {
+	max-width: 100%;
+}
+
+/* Search widget */
 .widget-area .widget_search {
 	border: none;
 	-webkit-box-shadow: none;
 	   -moz-box-shadow: none;
 	        box-shadow: none;
 }
-.widget-area .widget .widget-title {
-	padding: 5px;
-	background-color: #CCCCCC;
-	margin-bottom: 10px
+.widget_search .submit {
+	display: none;
 }
-
-
 
 /* =colophon
 ----------------------------------------------- */
@@ -882,4 +888,18 @@ object {
 #colophon a {
 	color: #aaaaaa;
 	background-color: #666666;
+}
+
+/* =Infinite Scroll
+----------------------------------------------- */
+
+/* Globally hidden elements when Infinite Scroll is supported and in use. */
+.infinite-scroll .navigation-paging, /* Older / Newer Posts Navigation (always hidden) */
+.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
+	display: none;
+}
+
+/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
+.infinity-end.neverending .site-footer {
+	display: block;
 }
